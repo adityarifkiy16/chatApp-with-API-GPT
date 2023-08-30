@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Navbar fixed */
+.navbar-fixed {
+    @apply fixed z-50;
+}
+
+/* Hamburger Menu */
+
+.hamburger-line {
+    @apply w-[30px] h-[2px] my-2 block bg-white
+}
+
+.hamburger-active > span:nth-child(1){
+ @apply  rotate-45;
+}
+
+.hamburger-active > span:nth-child(2){
+    @apply scale-0;
+}
+
+.hamburger-active > span:nth-child(3){
+    @apply -rotate-45;
+   }
+
+/* cross */
+
+.cross-line {
+    @apply w-[30px] h-[2px] my-2 block bg-white;
+}
+
+/* buble chat */
+.bubble-chat {
+    @apply mt-2 w-full self-center mx-2 ring-1 ring-white/5 shadow-lg p-6 rounded-lg text-white;
+}
+
+.response-bubble {
+    @apply bg-green-800;
+}
+
+.user-bubble {
+    @apply  bg-neutral-700
+}
+
+.error-bubble {
+    @apply bg-red-600
+}
+
+/* input login - register */
+.input-field {
+    @apply block p-1.5 pl-5 mt-2 w-full text-base border border-gray-300 rounded-lg bg-neutral-600 focus:ring-neutral-500 focus:border-neutral-500 text-white;
+}
+
+/* button login - register */
+.button-submit {
+    @apply bg-transparent max-w-full w-full mx-auto py-2 px-5 mt-7 ring-1 rounded-lg text-white hover:bg-pink-950 hover:ring-pink-600 hover:shadow-pinkCyber hover:text-pink-400;
+}
+
+.date-option {
+    @apply hover:cursor-pointer my-2 hover:text-neutral-200 text-neutral-300 mx-2; 
+}

@@ -1,0 +1,12 @@
+# Enable the RewriteEngine
+RewriteEngine On
+
+# Disable MultiViews option (remove Options -MultiViews)
+Options -MultiViews
+
+# Check if the requested URL is not a directory (!-d) and not a file (!-f)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Rewrite the URL to index.php with the original path as 'url' query parameter
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
