@@ -13,7 +13,7 @@ namespace Config {
                 $host = "localhost";
                 $dbname = "db_chatai";
                 $username = "root";
-                $password = "adminku";
+                $password = "";
                 self::$connection = new \PDO("mysql:host=$host;dbname=$dbname", $username, $password);
             } else {
                 self::$connection = "error connection";
