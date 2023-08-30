@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "@glidejs/glide": "^3.6.0",
-    "jquery": "^3.7.0",
+    "jquery": "^3.7.1",
     "sweetalert": "^2.1.2"
   },
-  "description": ""
+  "description": "made chatapp using api ChatGPT by [REST API AKUARI](https://api.akuari.my.id/docs)"
 }
