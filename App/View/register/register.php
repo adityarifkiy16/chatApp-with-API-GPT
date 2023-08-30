@@ -16,9 +16,9 @@
         <h1 class="text-3xl text-white font-semibold">Registration</h1>
         <form action="" method="post" class="mt-16 flex flex-col">
           <label for="username" class="text-white">Your username</label>
-          <input name="username" id="username" type="text" class="input-field" placeholder="funnyclown" />
+          <input name="username" id="username" type="text" class="input-field" placeholder="funnyclown" required />
           <label for="email" class="text-white mt-5">Your password</label>
-          <input name="password" id="password" type="password" class="input-field" placeholder="userpassword" />
+          <input name="password" id="password" type="password" class="input-field" placeholder="userpassword" required />
           <span class="text-base text-white mt-5">having account? <a href="login.php" class="text-pink-700 hover:text-pink-500 hover:ring-pink-200 hover:shadow-sm">login here</a></span>
           <button class="button-submit" type="submit" id="register" name="register">Register</button>
         </form>
