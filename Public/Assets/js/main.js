@@ -6,6 +6,11 @@ const sendButtonText = document.querySelector("#sendButtonText");
 const sendButtonDots = document.querySelector("#sendButtonDots");
 const rootDir = window.location.origin + "/ChatAI/Public";
 
+messageInput.addEventListener("input", function () {
+  this.style.height = "auto";
+  this.style.height = this.scrollHeight + "px";
+});
+
 // * variabel untuk ditampilkan
 let dataFetch = [];
 // * variabel untuk menyimpan data request user
