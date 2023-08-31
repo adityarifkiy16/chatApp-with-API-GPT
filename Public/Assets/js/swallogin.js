@@ -22,7 +22,17 @@ function loginUser(event) {
         }).then((value) => {
           window.location.href = `${rootDir}/Chat`;
         });
-      } else {
+      } else if (response === "invalid") {
+        swal({
+          title: "Error",
+          text: "Please fill out the field",
+          icon: "error",
+          timer: 3000,
+          button: false,
+        }).then((value) => {
+          window.location.reload(true);
+        });
+      } else if (response === "failed") {
         swal({
           title: "Error",
           text: "wrong username or password!",

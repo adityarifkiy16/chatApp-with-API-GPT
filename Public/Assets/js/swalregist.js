@@ -22,10 +22,30 @@ function registerUser(event) {
         }).then((value) => {
           window.location.href = `${rootDir}/User`;
         });
+      } else if (response === "invalid") {
+        swal({
+          title: "Error",
+          text: "Please fill out the field",
+          icon: "error",
+          timer: 3000,
+          button: false,
+        }).then((value) => {
+          window.location.reload(true);
+        });
+      } else if (response === "failed") {
+        swal({
+          title: "Error",
+          text: "Username already in use",
+          icon: "error",
+          timer: 3000,
+          button: false,
+        }).then((value) => {
+          window.location.reload(true);
+        });
       } else {
         swal({
           title: "Error",
-          text: "register failure, probably caused by an existing username!",
+          text: response,
           icon: "error",
           timer: 3000,
           button: false,

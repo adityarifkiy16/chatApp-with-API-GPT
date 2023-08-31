@@ -17,6 +17,18 @@ class User extends Controller
         }
     }
 
+    public function userObj()
+    {
+        $pdo = $this->getDatabaseConnection();
+        $this->model('User');
+        $userRepository = $this->repository('UserRepository', UserRepositoryImpl::class, $pdo);
+        $userService = $this->service('UserService', UserServiceImpl::class, $userRepository);
+        $userServiceImpl = new $userService($userRepository);
+        return $userServiceImpl;
+    }
+
+    // * Login Handling
+
     public function loginUser()
     {
         // Check if the login form is submitted
@@ -33,6 +45,9 @@ class User extends Controller
                 $_SESSION['username'] = $username;
                 $_SESSION['login'] = true;
                 echo "success";
+                exit();
+            } else if (!$username || !$password) {
+                echo "invalid";
                 exit();
             } else {
                 echo "failed";
@@ -51,14 +66,29 @@ class User extends Controller
         header('Location:' . BASEURL . '/User');
     }
 
+    // * Register Handling
+
+    public function register()
+    {
+        $this->view("register/register");
+    }
+
     public function registerHandling()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = $_POST['username'];
             $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-            $regis = $this->userObj()->register($username, $password);
-            if ($regis == true) {
-                echo "success";
+            if ($username && $password) {
+                $regis = $this->userObj()->register($username, $password);
+                if ($regis == true) {
+                    echo "success";
+                    exit();
+                } else {
+                    echo "failed conected to database";
+                    exit();
+                }
+            } else if (!$username || !$password) {
+                echo "invalid";
                 exit();
             } else {
                 echo "failed";
@@ -66,34 +96,4 @@ class User extends Controller
             }
         }
     }
-
-    public function register()
-    {
-        $this->view("register/register");
-    }
-
-    public function userObj()
-    {
-        $pdo = $this->getDatabaseConnection();
-        $this->model('User');
-        $userRepository = $this->repository('UserRepository', UserRepositoryImpl::class, $pdo);
-        $userService = $this->service('UserService', UserServiceImpl::class, $userRepository);
-        $userServiceImpl = new $userService($userRepository);
-        return $userServiceImpl;
-    }
-
-    // public function registration()
-    // {
-    //     if (isset($_POST['register'])) {
-    //         $regis = $this->userService->register($username, $password);
-
-    //         if ($regis == true) {
-    //             echo "success";
-    //         } else {
-    //             echo "failed";
-    //         }
-    //         exit;
-    //     }
-    //     require_once __DIR__ . "/../View/register.php";
-    // }
 }
