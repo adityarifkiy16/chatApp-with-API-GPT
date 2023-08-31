@@ -2,7 +2,7 @@
 
 use Repository\UserRepositoryImpl;
 use Service\UserServiceImpl;
-use Config\Database; // Import the Database class
+use Config\Database;
 
 class Controller
 {
@@ -12,6 +12,17 @@ class Controller
         try {
             $pdo = Database::getConnection();
             return $pdo;
+        } catch (\Exception $e) {
+            throw new \Exception("Database error: " . $e->getMessage());
+        }
+    }
+
+    public function closeDatabaseConnection()
+    {
+        require_once '../App/Config/database.php';
+        try {
+            $closeCon = Database::closeConnection();
+            return $closeCon;
         } catch (\Exception $e) {
             throw new \Exception("Database error: " . $e->getMessage());
         }
@@ -30,7 +41,6 @@ class Controller
     public function repository($class, $namespace, ...$params)
     {
         require_once '../App/Repository/' . $class . '.php';
-
         // Use reflection to create an instance with variable constructor parameters
         $reflectionClass = new ReflectionClass($namespace);
         $repo = $reflectionClass->newInstanceArgs($params);

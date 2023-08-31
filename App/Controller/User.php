@@ -53,6 +53,7 @@ class User extends Controller
                 echo "failed";
                 exit();
             }
+            $this->closeDatabaseConnection();
         } else {
             $this->view('login/login');
         }
@@ -94,6 +95,7 @@ class User extends Controller
                 echo "failed";
                 exit();
             }
+            $this->closeDatabaseConnection();
         }
     }
 }

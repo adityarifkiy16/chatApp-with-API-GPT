@@ -37,7 +37,7 @@ class Chat extends Controller
             } else {
                 echo 'FAIL' . PHP_EOL;
             }
-            echo $uid;
+            $this->closeDatabaseConnection();
         }
     }
 
@@ -47,5 +47,6 @@ class Chat extends Controller
         $uid = $_SESSION['user_id'];
         $jsonData = $this->chatObj()->showChat($uid);
         echo $jsonData;
+        $this->closeDatabaseConnection();
     }
 }

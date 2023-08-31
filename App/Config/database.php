@@ -8,8 +8,6 @@ namespace Config {
         static function getConnection(): \PDO
         {
             if (self::$connection === null) {
-
-
                 $host = "localhost";
                 $dbname = "db_chatai";
                 $username = "root";
