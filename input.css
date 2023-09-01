@@ -61,3 +61,24 @@
 .date-option {
     @apply hover:cursor-pointer my-2 hover:text-neutral-200 text-neutral-300 mx-2; 
 }
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+  
+/* Track */
+::-webkit-scrollbar-track {
+    background: #57534e;
+}
+  
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #f1f1f1;
+    border-radius: 5px;
+}
+  
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #fff;
+}

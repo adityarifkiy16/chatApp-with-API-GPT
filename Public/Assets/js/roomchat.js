@@ -1,6 +1,12 @@
+const profilMenu = document.querySelector("#profile-menu");
+const dotButton = document.querySelector("#dot-button");
+const header = document.querySelector("header");
+const hamburger = document.querySelector("#hamburger");
+const menu = document.querySelector("#nav-menu");
+const html = document.querySelector("html");
+
 // fixed navbar
 window.onscroll = function () {
-  const header = document.querySelector("header");
   const fixedNav = header.offsetTop;
 
   if (window.pageYOffset > fixedNav) {
@@ -11,10 +17,6 @@ window.onscroll = function () {
 };
 
 // hamburger
-const hamburger = document.querySelector("#hamburger");
-const menu = document.querySelector("#nav-menu");
-const html = document.querySelector("html");
-
 hamburger.addEventListener("click", function (event) {
   event.stopPropagation();
   hamburger.classList.toggle("hamburger-active");
@@ -31,9 +33,6 @@ document.addEventListener("click", function (event) {
     console.log("window clicked!");
   }
 });
-
-const profilMenu = document.querySelector("#profile-menu");
-const dotButton = document.querySelector("#dot-button");
 
 dotButton.addEventListener("click", function () {
   profilMenu.classList.toggle("hidden");

@@ -86,14 +86,14 @@
     <div class="fixed bottom-2 w-full flex px-2">
       <form class="container" method="post" id="messageForm">
         <div class="relative">
-          <textarea id="message" name="message" class="block w-full p-4 pb-0 max-h-28 text-sm text-white border border-gray-300 rounded-lg bg-neutral-600 focus:ring-neutral-500 focus:border-neutral-500" placeholder="Send a message" required></textarea>
-          <button type="submit" name="send" id="send" class="text-white absolute right-2.5 bottom-2.5 bg-green-700 hover:bg-green-800 focus:ring-1 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 disabled:hover:bg-green-700">
+          <textarea id="message" name="message" class="block w-full p-4 pb-0 pr-14 resize-none max-h-28 text-sm text-white border border-gray-300 rounded-lg bg-neutral-600 focus:ring-neutral-500 focus:border-neutral-500" placeholder="Send a message" required></textarea>
+          <button type="submit" name="send" id="send" class="text-white absolute right-4 bottom-2.5 bg-green-700 hover:bg-green-800 focus:ring-1 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 disabled:hover:bg-green-700">
             <span id="sendButtonText" class="transition-opacity duration-300 ease-in">
-              Send
+              <i class="fa-solid fa-paper-plane"></i>
             </span>
             <span id="sendButtonDots" class="hidden transition-opacity duration-300 ease-in">
               <span class="w-1 h-1 rounded-full bg-white"></span>
-              ...
+              <i class="fa-solid fa-spinner fa-spin-pulse"></i>
             </span>
           </button>
         </div>
@@ -103,6 +103,7 @@
   </section>
   <script src="<?= BASEURL; ?>/../node_modules/sweetalert/dist/sweetalert.min.js"></script>
   <script src="<?= BASEURL ?>/Assets/js/roomchat.js"></script>
+  <script src="https://kit.fontawesome.com/a2f99ee185.js" crossorigin="anonymous"></script>
   <script type="module" src="<?= BASEURL ?>/Assets/js/main.mjs"></script>
 </body>
 
