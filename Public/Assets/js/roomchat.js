@@ -26,7 +26,6 @@ document.addEventListener("click", function (event) {
     hamburger.classList.contains("hamburger-active") &&
     !menu.contains(event.target)
   ) {
-    // Sembunyikan side bar jika kondisi terpenuhi
     hamburger.classList.remove("hamburger-active");
     menu.classList.remove("translate-x-64");
     console.log("window clicked!");
@@ -41,7 +40,6 @@ dotButton.addEventListener("click", function () {
 });
 
 // logout
-
 const logoutBtn = document.querySelector("#logout");
 logoutBtn.addEventListener("click", function () {
   swal({

@@ -103,7 +103,7 @@
   </section>
   <script src="<?= BASEURL; ?>/../node_modules/sweetalert/dist/sweetalert.min.js"></script>
   <script src="<?= BASEURL ?>/Assets/js/roomchat.js"></script>
-  <script src="<?= BASEURL ?>/Assets/js/main.js"></script>
+  <script type="module" src="<?= BASEURL ?>/Assets/js/main.mjs"></script>
 </body>
 
 </html>

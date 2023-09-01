@@ -1,15 +1,12 @@
+import today from "./date.js";
+
+const bubbleContainer = document.querySelector("#bubble");
 const formMessage = document.getElementById("messageForm");
 const messageInput = document.getElementById("message");
-const bubbleContainer = document.querySelector("#bubble");
 const buttonSend = document.getElementById("send");
 const sendButtonText = document.querySelector("#sendButtonText");
 const sendButtonDots = document.querySelector("#sendButtonDots");
 const rootDir = window.location.origin + "/ChatAI/Public";
-
-messageInput.addEventListener("input", function () {
-  this.style.height = "auto";
-  this.style.height = this.scrollHeight + "px";
-});
 
 // * variabel untuk ditampilkan
 let dataFetch = [];
@@ -20,12 +17,15 @@ let dataResponse = [];
 // * variabel untuk menyimpan data yang akan disimpan di database
 let dataSave = [];
 
-// ! current date
-let today = new Date();
-let dd = String(today.getDate()).padStart(2, "0");
-let mm = String(today.getMonth() + 1).padStart(2, "0");
-let yyyy = today.getFullYear();
-today = yyyy + "-" + mm + "-" + dd;
+messageInput.addEventListener("input", function () {
+  this.style.height = "auto";
+  this.style.height = this.scrollHeight + "px";
+});
+
+window.addEventListener("load", loadFromDatabase);
+
+//  * handling send button to chat API
+formMessage.addEventListener("submit", handleFormSubmit);
 
 // * fungsi load data dari database
 async function loadFromDatabase() {
@@ -75,17 +75,12 @@ async function loadFromDatabase() {
   }
 }
 
-window.addEventListener("load", loadFromDatabase);
-
-//  * handling send button to chat API
-formMessage.addEventListener("submit", async (event) => {
+async function handleFormSubmit(event) {
   event.preventDefault();
   const userInput = messageInput.value;
 
   if (userInput) {
-    buttonSend.disabled = true;
-    sendButtonText.classList.toggle("hidden");
-    sendButtonDots.classList.toggle("hidden");
+    disableSendButton();
 
     const newMessage = { type: "request", content: userInput, time: today };
     dataSave.push(newMessage);
@@ -106,23 +101,62 @@ formMessage.addEventListener("submit", async (event) => {
           dataSave.push(aiMessage);
         }
       } else {
-        const errorMessage = {
-          type: "error",
-          content: `${response.status}: ${response.statusText}`,
-        };
-        dataFetch.push(errorMessage);
+        handleErrorResponse(response);
       }
     } catch (err) {
-      const errorMessage = { type: "error", content: err.message };
-      dataFetch.push(errorMessage);
+      handleErrorResponse(err);
     } finally {
-      buttonSend.disabled = false;
-      sendButtonText.classList.toggle("hidden");
-      sendButtonDots.classList.toggle("hidden");
+      enableSendButton();
       saveToDatabase(dataSave); // save dan load database
     }
   }
-});
+}
+
+// * menyimpan ke database dengan method form post
+async function saveToDatabase(response) {
+  const dataJson = JSON.stringify(response);
+  const formData = new FormData();
+  formData.append("response", dataJson);
+
+  try {
+    const saveResponse = await fetch(`${rootDir}/Chat/saveToDatabase`, {
+      method: "POST",
+      body: formData,
+    });
+
+    if (saveResponse.ok) {
+      dataSave = [];
+      dataFetch = [];
+      dataRequest = [];
+      dataResponse = [];
+      loadFromDatabase();
+    } else {
+      console.error("Terjadi kesalahan saat menyimpan data ke database.");
+    }
+  } catch (error) {
+    console.error("Terjadi kesalahan: ", error);
+  }
+}
+
+function handleErrorResponse(error) {
+  const errorMessage = {
+    type: "error",
+    content: error.message || "Unknown error",
+  };
+  dataFetch.push(errorMessage);
+}
+
+function disableSendButton() {
+  buttonSend.disabled = true;
+  sendButtonText.classList.toggle("hidden");
+  sendButtonDots.classList.toggle("hidden");
+}
+
+function enableSendButton() {
+  buttonSend.disabled = false;
+  sendButtonText.classList.toggle("hidden");
+  sendButtonDots.classList.toggle("hidden");
+}
 
 function filterChatMessagesByDate(selectedDate) {
   return dataFetch.filter((item) => {
@@ -180,30 +214,4 @@ function renderSideContent() {
 
   timerContainer.innerHTML = "";
   timerContainer.appendChild(ul);
-}
-
-// * menyimpan ke database dengan method form post
-async function saveToDatabase(response) {
-  const dataJson = JSON.stringify(response);
-  const formData = new FormData();
-  formData.append("response", dataJson);
-
-  try {
-    const saveResponse = await fetch(`${rootDir}/Chat/saveToDatabase`, {
-      method: "POST",
-      body: formData,
-    });
-
-    if (saveResponse.ok) {
-      dataSave = [];
-      dataFetch = [];
-      dataRequest = [];
-      dataResponse = [];
-      loadFromDatabase();
-    } else {
-      console.error("Terjadi kesalahan saat menyimpan data ke database.");
-    }
-  } catch (error) {
-    console.error("Terjadi kesalahan: ", error);
-  }
 }
