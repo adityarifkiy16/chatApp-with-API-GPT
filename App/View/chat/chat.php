@@ -101,10 +101,8 @@
     </div>
     <!-- Akhir input chat -->
   </section>
-  <script src="<?= BASEURL; ?>/../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-  <script src="<?= BASEURL ?>/Assets/js/roomchat.js"></script>
   <script src="https://kit.fontawesome.com/a2f99ee185.js" crossorigin="anonymous"></script>
-  <script type="module" src="<?= BASEURL ?>/Assets/js/main.mjs"></script>
+  <script type="module" src="<?= BASEURL ?>/../output/js/app.bundle.js"></script>
 </body>
 
 </html>

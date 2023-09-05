@@ -25,8 +25,7 @@
       </div>
     </div>
   </section>
-  <script src="<?= BASEURL; ?>/../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-  <script src="<?= BASEURL; ?>/Assets/js/swalregist.js"></script>
+  <script type="module" src="<?= BASEURL ?>/../output/js/regist.bundle.js"></script>
 </body>
 
 </html>

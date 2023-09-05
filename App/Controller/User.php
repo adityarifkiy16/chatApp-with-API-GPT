@@ -46,9 +46,6 @@ class User extends Controller
                 $_SESSION['login'] = true;
                 echo "success";
                 exit();
-            } else if (!$username || !$password) {
-                echo "invalid";
-                exit();
             } else {
                 echo "failed";
                 exit();
@@ -85,14 +82,14 @@ class User extends Controller
                     echo "success";
                     exit();
                 } else {
-                    echo "failed conected to database";
+                    echo "failed";
                     exit();
                 }
             } else if (!$username || !$password) {
                 echo "invalid";
                 exit();
             } else {
-                echo "failed";
+                echo "something went wrong";
                 exit();
             }
             $this->closeDatabaseConnection();

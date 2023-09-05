@@ -64,9 +64,7 @@
       </div>
     </div>
   </section>
-  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="../node_modules/@glidejs/glide/dist/glide.min.js"></script>
-  <script src="Assets/js/slider.js"></script>
+  <script type="module" src="<?= BASEURL ?>/../output/js/home.bundle.js"></script>
 </body>
 
 </html>
