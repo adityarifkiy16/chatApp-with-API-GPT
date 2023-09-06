@@ -22,11 +22,12 @@
           </button>
           <!-- Akhir hamburger -->
           <!-- Awal navbar -->
-          <nav id="nav-menu" class="pt-1 max-w-[250px] w-full h-screen top-0 -left-64 fixed bg-neutral-900 transition duration-300 ease-in-out">
-            <div class="flex flex-col h-full divide-y">
+          <nav id="nav-menu" class="pt-1 max-w-[250px] w-full h-screen top-0 -left-64 fixed bg-neutral-900 opacity-90 transition duration-300 ease-in-out">
+            <div class="flex flex-col h-screen">
               <!--sidebar menu item -->
-              <h1 class="text-xl text-white font-bold">Date: </h1>
-              <div class="block" id="time-sidebar">
+              <div class="pl-4">
+                <span class="text-xl text-white font-bold"><i class="fa-regular fa-calendar-days"></i> Date: </span>
+                <div class="block" id="time-sidebar"></div>
               </div>
               <!-- sidebar menu item -->
 
@@ -72,7 +73,7 @@
     </div>
   </header>
 
-  <section class="p-5 mb-56 flex flex-col items-center justify-center" id="chat">
+  <section class="p-5 mt-20 mb-56 flex flex-col items-center justify-center" id="chat">
     <!-- bublechat -->
     <div class="container">
       <div class="flex flex-wrap" id="bubble">

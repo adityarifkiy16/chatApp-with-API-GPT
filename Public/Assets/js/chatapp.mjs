@@ -2,7 +2,6 @@ import today from "./utils/date.js";
 import {
   disableSendButton,
   enableSendButton,
-  buttonSend,
   dotButton,
 } from "./utils/button.js";
 import combineAndSortData from "./utils/combineAndSortData.js";
@@ -21,6 +20,12 @@ export default class ChatApp {
     this.dataRequest = [];
     this.dataResponse = [];
     this.dataSave = [];
+    this.dataFeature = [
+      { title: "ask any question", content: "feel free to talk with me" },
+      { title: "API GPT", content: "this app create using api GPT" },
+      { title: "Easy", content: "easy to use" },
+      { title: "learn", content: "the source code can be learning" },
+    ];
   }
 
   initializeDOMElements() {
@@ -34,7 +39,7 @@ export default class ChatApp {
       "input",
       this.adjustMessageInputHeight.bind(this)
     );
-    window.addEventListener("load", this.loadFromDatabase.bind(this));
+    window.addEventListener("load", this.renderFeature.bind(this));
     this.formMessage.addEventListener(
       "submit",
       this.handleFormSubmit.bind(this)
@@ -197,6 +202,32 @@ export default class ChatApp {
     });
   }
 
+  renderFeature() {
+    this.bubbleContainer.innerHTML = "";
+    const featureContainer = document.createElement("div");
+    featureContainer.classList.add("featureContainer");
+
+    this.dataFeature.forEach((item) => {
+      const feature = document.createElement("div");
+      const titleFeature = document.createElement("h2");
+      const contentFeature = document.createElement("p");
+
+      titleFeature.classList.add("font-semibold", "text-md", "text-white");
+      contentFeature.classList.add("text-sm", "text-neutral-400");
+      feature.classList.add("feature");
+
+      titleFeature.textContent = item.title;
+      contentFeature.textContent = item.content;
+
+      feature.appendChild(titleFeature);
+      feature.appendChild(contentFeature);
+
+      featureContainer.appendChild(feature);
+    });
+
+    this.bubbleContainer.appendChild(featureContainer);
+  }
+
   renderSideContent() {
     const timerContainer = document.querySelector("#time-sidebar");
     const ul = document.createElement("ul");
@@ -207,7 +238,11 @@ export default class ChatApp {
     // Iterate through unique dates and create date options in the sidebar
     uniqueDates.forEach((date) => {
       const li = document.createElement("li");
-      li.textContent = date;
+      if (date === today) {
+        li.textContent = "today";
+      } else {
+        li.textContent = date;
+      }
       li.classList.add("date-option");
 
       li.addEventListener("click", () => {
