@@ -8,7 +8,7 @@ export default class NavbarService {
     this.html = document.querySelector("html");
 
     // fixed navbar
-    this.onscroll = () => {
+    window.onscroll = () => {
       const fixedNav = this.header.offsetTop;
       if (window.scrollY > fixedNav) {
         this.header.classList.add("navbar-fixed");
@@ -23,6 +23,7 @@ export default class NavbarService {
         !this.menu.contains(event.target)
       ) {
         this.hamburger.classList.remove("hamburger-active");
+        this.hamburger.classList.toggle("translate-x-64");
         this.menu.classList.remove("translate-x-64");
       }
     });

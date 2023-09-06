@@ -1,5 +1,10 @@
 import today from "./utils/date.js";
-import { disableSendButton, enableSendButton } from "./utils/button.js";
+import {
+  disableSendButton,
+  enableSendButton,
+  buttonSend,
+  dotButton,
+} from "./utils/button.js";
 import combineAndSortData from "./utils/combineAndSortData.js";
 import findUniqueDates from "./utils/uniqueDates.js";
 
@@ -10,12 +15,14 @@ export default class ChatApp {
     this.initializeDOMElements();
     this.setupEventListeners();
   }
+
   initializeData() {
     this.dataFetch = [];
     this.dataRequest = [];
     this.dataResponse = [];
     this.dataSave = [];
   }
+
   initializeDOMElements() {
     this.messageInput = document.getElementById("message");
     this.bubbleContainer = document.querySelector("#bubble");
@@ -35,8 +42,13 @@ export default class ChatApp {
   }
 
   adjustMessageInputHeight() {
-    this.messageInput.style.height = "auto";
-    this.messageInput.style.height = this.messageInput.scrollHeight + "px";
+    if (this.messageInput.value.length) {
+      this.messageInput.style.height = "auto";
+      this.messageInput.style.height = this.messageInput.scrollHeight + "px";
+      enableSendButton();
+    } else {
+      disableSendButton();
+    }
   }
 
   async loadFromDatabase() {
@@ -82,7 +94,7 @@ export default class ChatApp {
     const userInput = this.messageInput.value;
 
     if (userInput) {
-      disableSendButton();
+      dotButton();
       const newMessage = { type: "request", content: userInput, time: today };
       this.dataSave.push(newMessage);
       this.dataFetch.push(newMessage);
@@ -107,7 +119,6 @@ export default class ChatApp {
       } catch (err) {
         this.handleErrorResponse(err);
       } finally {
-        enableSendButton();
         this.saveToDatabase(this.dataSave);
       }
     }
@@ -127,6 +138,7 @@ export default class ChatApp {
       if (saveResponse.ok) {
         this.initializeData();
         this.loadFromDatabase();
+        disableSendButton();
       } else {
         console.error("Terjadi kesalahan saat menyimpan data ke database.");
       }

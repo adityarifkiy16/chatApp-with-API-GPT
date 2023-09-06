@@ -33,7 +33,7 @@
 
 /* buble chat */
 .bubble-chat {
-    @apply mt-2 w-full self-center mx-2 ring-1 ring-white/5 shadow-lg p-6 rounded-lg text-white;
+    @apply mt-2 w-full self-center mx-4 ring-1 ring-white/5 shadow-lg p-6 rounded-lg text-white;
 }
 
 .response-bubble {
@@ -56,6 +56,11 @@
 /* button login - register */
 .button-submit {
     @apply bg-transparent max-w-full w-full mx-auto py-2 px-5 mt-7 ring-1 rounded-lg text-white hover:bg-pink-950 hover:ring-pink-600 hover:shadow-pinkCyber hover:text-pink-400;
+}
+
+/* button send */
+.button-send {
+    @apply p-2 text-neutral-400;
 }
 
 .date-option {

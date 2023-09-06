@@ -13,6 +13,7 @@ navbarservice.onHamburgerClick((event) => {
   event.stopPropagation();
   navbarservice.hamburger.classList.toggle("hamburger-active");
   navbarservice.menu.classList.toggle("translate-x-64");
+  navbarservice.hamburger.classList.toggle("translate-x-64");
 });
 
 navbarservice.onDotbuttonClick((event) => {
