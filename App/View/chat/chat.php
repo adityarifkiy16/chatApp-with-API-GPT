@@ -25,8 +25,8 @@
           <nav id="nav-menu" class="pt-1 max-w-[250px] w-full h-screen top-0 -left-64 fixed bg-neutral-900 opacity-90 transition duration-300 ease-in-out">
             <div class="flex flex-col h-screen">
               <!--sidebar menu item -->
-              <div class="pl-4">
-                <span class="text-xl text-white font-bold"><i class="fa-regular fa-calendar-days"></i> Date: </span>
+              <div class="pl-4 pt-4">
+                <span class="text-lg text-white font-bold"><i class="fa-regular fa-calendar-days"></i> Recent: </span>
                 <div class="block" id="time-sidebar"></div>
               </div>
               <!-- sidebar menu item -->
@@ -75,9 +75,8 @@
 
   <section class="p-5 mt-20 mb-56 flex flex-col items-center justify-center" id="chat">
     <!-- bublechat -->
-    <div class="container">
+    <div class="container relative">
       <div class="flex flex-wrap" id="bubble">
-
       </div>
     </div>
     <!-- AKhir bubble chat -->

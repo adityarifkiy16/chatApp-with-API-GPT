@@ -84,13 +84,14 @@ export default class ChatApp {
         sortedData.forEach((item) => {
           this.dataFetch.push(item);
         });
+        return true;
       } else {
         console.error("Terjadi kesalahan saat mengambil data dari database.");
+        return false;
       }
     } catch (error) {
       console.error("Terjadi kesalahan: ", error);
-    } finally {
-      this.renderChatData();
+      throw error;
     }
   }
 
@@ -142,8 +143,11 @@ export default class ChatApp {
 
       if (saveResponse.ok) {
         this.initializeData();
-        this.loadFromDatabase();
-        disableSendButton();
+        const loadData = await this.loadFromDatabase();
+        if (loadData) {
+          this.renderChatData();
+          disableSendButton();
+        }
       } else {
         console.error("Terjadi kesalahan saat menyimpan data ke database.");
       }
@@ -178,6 +182,15 @@ export default class ChatApp {
       this.renderChatBubbles(date);
       this.renderSideContent();
     });
+
+    const dateOptions = document.querySelectorAll("li.date-option");
+    dateOptions.forEach((dateOption) => {
+      if (dateOption.textContent === "today") {
+        dateOption.classList.add("active");
+      } else {
+        dateOption.classList.remove("active");
+      }
+    });
   }
 
   renderChatBubbles(selectedDate) {
@@ -202,30 +215,39 @@ export default class ChatApp {
     });
   }
 
-  renderFeature() {
-    this.bubbleContainer.innerHTML = "";
-    const featureContainer = document.createElement("div");
-    featureContainer.classList.add("featureContainer");
+  async renderFeature() {
+    try {
+      const loadData = await this.loadFromDatabase();
+      if (loadData) {
+        this.bubbleContainer.innerHTML = "";
+        const featureContainer = document.createElement("div");
+        featureContainer.classList.add("featureContainer");
 
-    this.dataFeature.forEach((item) => {
-      const feature = document.createElement("div");
-      const titleFeature = document.createElement("h2");
-      const contentFeature = document.createElement("p");
+        this.dataFeature.forEach((item) => {
+          const feature = document.createElement("div");
+          const titleFeature = document.createElement("h2");
+          const contentFeature = document.createElement("p");
 
-      titleFeature.classList.add("font-semibold", "text-md", "text-white");
-      contentFeature.classList.add("text-sm", "text-neutral-400");
-      feature.classList.add("feature");
+          titleFeature.classList.add("font-semibold", "text-md", "text-white");
+          contentFeature.classList.add("text-sm", "text-neutral-400");
+          feature.classList.add("feature");
 
-      titleFeature.textContent = item.title;
-      contentFeature.textContent = item.content;
+          titleFeature.textContent = item.title;
+          contentFeature.textContent = item.content;
 
-      feature.appendChild(titleFeature);
-      feature.appendChild(contentFeature);
-
-      featureContainer.appendChild(feature);
-    });
-
-    this.bubbleContainer.appendChild(featureContainer);
+          feature.appendChild(titleFeature);
+          feature.appendChild(contentFeature);
+          featureContainer.appendChild(feature);
+        });
+        this.bubbleContainer.appendChild(featureContainer);
+      } else {
+        console.log("error");
+      }
+    } catch (error) {
+      console.error("Error in renderFeature:", error);
+    } finally {
+      this.renderSideContent();
+    }
   }
 
   renderSideContent() {
@@ -233,22 +255,30 @@ export default class ChatApp {
     const ul = document.createElement("ul");
 
     // Create an array to store unique dates
-    const uniqueDates = findUniqueDates(this.dataFetch);
+    const dataFetchRev = [...this.dataFetch].reverse();
+    const uniqueDates = findUniqueDates(dataFetchRev);
 
     // Iterate through unique dates and create date options in the sidebar
     uniqueDates.forEach((date) => {
       const li = document.createElement("li");
-      if (date === today) {
-        li.textContent = "today";
-      } else {
-        li.textContent = date;
-      }
+      const isToday = date === today;
+      li.textContent = isToday ? "today" : date;
+
+      // Check if date and today are not empty and add "active" class conditionally
       li.classList.add("date-option");
 
-      li.addEventListener("click", () => {
+      li.addEventListener("click", (event) => {
+        const clickedLi = event.currentTarget;
+
+        const allLi = ul.querySelectorAll("li.date-option");
+
+        allLi.forEach((li) => {
+          li.classList.remove("active");
+        });
+
+        clickedLi.classList.add("active");
         this.renderChatBubbles(date);
       });
-
       ul.appendChild(li);
     });
 

@@ -63,8 +63,21 @@
     @apply p-2 text-neutral-400;
 }
 
+/* feature */
+.featureContainer{
+    @apply grid grid-cols-2 gap-4 absolute top-60 left-1/2 -translate-x-1/2 w-full max-w-3xl ;
+}
+
+.feature {
+    @apply bg-neutral-700 p-2 rounded-md;
+}
+
 .date-option {
-    @apply hover:cursor-pointer my-2 hover:text-neutral-200 text-neutral-300 mx-2; 
+    @apply hover:cursor-pointer my-2 hover:text-neutral-200 text-neutral-300 mx-2 p-2; 
+}
+
+.active {
+    @apply bg-green-800 rounded-md;
 }
 
 /* width */
