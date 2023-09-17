@@ -11,11 +11,14 @@
   <link rel="stylesheet" href="<?= BASEURL; ?>/Assets/css/custom.css" />
 </head>
 
-<body class="bg-white">
-  <section class="mt-20 p-10 md:mt-15 md:p-15 lg:mt-10 lg:p-20">
-    <div class="container">
+<body>
+  <section class="flex flex-col justify-center items-center h-screen overflow-hidden">
+    <div class="container my-auto relative">
+      <span class="w-40 h-40 bg-orange-300 blur-xl rounded-full absolute top-0 start-32 -translate-y-1/2 animate-blob"></span>
+      <span class="w-40 h-40 bg-pink-300 blur-xl rounded-full absolute bottom-0 end-44 translate-y-1/2 animate-blobb"></span>
       <div class="relative flex flex-wrap items-center justify-center lg:flex-row">
-        <div class="w-full rounded-lg p-4 shadow-[0.625rem_0.625rem_0.875rem_0_rgb(225,226,228),-0.5rem_-0.5rem_1.125rem_0_rgb(255,255,255)] backdrop-blur-3xl lg:w-1/3 lg:p-8">
+        <!-- form login -->
+        <div class="w-full rounded-lg p-4 shadow-[0.625rem_0.625rem_0.875rem_0_rgb(0,0,0,0.1),-0.5rem_-0.5rem_1.125rem_0_rgb(0,0,0,0.1)] backdrop-blur-3xl lg:w-1/3 lg:p-8">
           <form action="<?= BASEURL; ?>/User/loginUser" method="post" class="my-auto flex flex-col">
             <span class="mb-12 text-xl lg:text-2xl">
               <h1 class="mb-4 text-base lg:text-xl">ChatApp</h1>
@@ -31,8 +34,9 @@
             </button>
           </form>
         </div>
+        <!-- end form login -->
         <!-- slider -->
-        <div class="hidden rounded-r-lg bg-[#e6e9f3] p-4 shadow-[inset_0.rem_0_1rem_0_rgb(0,0,0,0.1)] lg:w-1/3 lg:block">
+        <div class="hidden rounded-r-lg backdrop-blur-xl p-4 shadow-lg lg:w-1/3 lg:block">
           <div class="glide relative">
             <div class="glide__track" data-glide-el="track">
               <ul class="glide__slides">
