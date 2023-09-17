@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chat AI</title>
   <link rel="stylesheet" href="../node_modules/@glidejs/glide/dist/css/glide.core.min.css" />
-  <link rel="stylesheet" href="Assets/css/style.css" />
-  <link rel="stylesheet" href="Assets/css/custom.css" />
+  <link rel="stylesheet" href="<?= BASEURL; ?>/Assets/css/style.css" />
+  <link rel="stylesheet" href="<?= BASEURL; ?>/Assets/css/custom.css" />
 </head>
 
 <body class="bg-neutral-800">

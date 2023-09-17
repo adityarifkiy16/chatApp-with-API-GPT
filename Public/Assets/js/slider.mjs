@@ -4,7 +4,7 @@ import { $, jQuery } from "jquery";
 let slide = document.addEventListener("DOMContentLoaded", function () {
   const glide = new Glide(".glide", {
     type: "carousel",
-    perView: 2,
+    perView: 1,
     gap: 10,
     autoplay: 3000,
     hoverpause: true,
@@ -30,3 +30,5 @@ let slide = document.addEventListener("DOMContentLoaded", function () {
     }, 1000);
   });
 });
+
+export default slide;

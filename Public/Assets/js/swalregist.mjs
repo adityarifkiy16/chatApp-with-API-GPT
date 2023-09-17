@@ -46,6 +46,7 @@ function showSuccess(message) {
     icon: "success",
     timer: 3000,
     button: false,
+    className: "w-3/4",
   }).then((value) => {
     window.location.href = `${rootDir.getRootDirectory()}/User`;
   });
@@ -58,6 +59,7 @@ function showError(message) {
     icon: "error",
     timer: 3000,
     button: false,
+    className: "w-3/4",
   }).then((value) => {
     window.location.reload(true);
   });

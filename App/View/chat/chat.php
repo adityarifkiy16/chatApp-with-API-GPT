@@ -22,7 +22,7 @@
           </button>
           <!-- Akhir hamburger -->
           <!-- Awal navbar -->
-          <nav id="nav-menu" class="pt-1 max-w-[250px] w-full h-screen top-0 -left-64 fixed bg-neutral-900 opacity-90 transition duration-300 ease-in-out">
+          <nav id="nav-menu" style="max-height: 100dvh;" class="pt-1 max-w-[250px] w-full h-auto top-0 -left-64 absolute bg-neutral-900 opacity-90 transition duration-300 ease-in-out">
             <div class="flex flex-col h-screen">
               <!--sidebar menu item -->
               <div class="pl-4 pt-4">

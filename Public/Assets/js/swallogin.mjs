@@ -1,6 +1,8 @@
 import RootDirectory from "./utils/rootdir.js";
 import swal from "sweetalert";
+import slide from "./slider.mjs";
 
+const slider = slide;
 const rootDir = new RootDirectory();
 
 document.addEventListener("click", (event) => {
@@ -49,6 +51,7 @@ function showSuccess(message) {
     icon: "success",
     timer: 3000,
     button: false,
+    className: "w-1/2",
   }).then(() => {
     window.location.href = `${rootDir.getRootDirectory()}/Chat`;
   });
@@ -61,6 +64,7 @@ function showError(message) {
     icon: "error",
     timer: 3000,
     button: false,
+    className: "w-1/2",
   }).then(() => {
     window.location.reload(true);
   });

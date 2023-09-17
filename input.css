@@ -4,7 +4,7 @@
 
 /* Navbar fixed */
 .navbar-fixed {
-    @apply fixed z-50;
+    @apply fixed z-50 backdrop-blur-xl;
 }
 
 /* Hamburger Menu */
@@ -50,12 +50,12 @@
 
 /* input login - register */
 .input-field {
-    @apply block p-1.5 pl-5 mt-2 w-full text-base border border-gray-300 rounded-lg bg-neutral-600 focus:ring-neutral-500 focus:border-neutral-500 text-white;
+    @apply block p-1.5 pl-5 mt-2 w-full text-base border border-none outline-none rounded-lg bg-sky-950 text-white;
 }
 
 /* button login - register */
 .button-submit {
-    @apply bg-transparent max-w-full w-full mx-auto py-2 px-5 mt-7 ring-1 rounded-lg text-white hover:bg-pink-950 hover:ring-pink-600 hover:shadow-pinkCyber hover:text-pink-400;
+    @apply bg-sky-950 opacity-50 max-w-full w-full mx-auto py-2 px-5 mt-7 rounded-lg text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 duration-300 hover:opacity-100 hover:shadow-blueSea hover:text-white;
 }
 
 /* button send */
@@ -100,3 +100,4 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #fff;
 }
+
